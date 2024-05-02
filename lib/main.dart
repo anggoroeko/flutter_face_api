@@ -40,29 +40,29 @@ class _MyAppState extends State<MyApp> {
     setImage(true, imageFile, Regula.ImageType.LIVE);
   }
 
-  showAlertDialog(BuildContext context, bool first) => showDialog(
-      context: context,
-      builder: (BuildContext context) => first
-          ? AlertDialog(title: const Text("Select option"), actions: [
-              TextButton(child: const Text("Use camera"), onPressed: () {})
-            ])
-          : AlertDialog(title: const Text("Select option"), actions: [
-              TextButton(
-                  child: const Text("Use camera"),
-                  onPressed: () {
-                    Regula.FaceSDK.presentFaceCaptureActivity().then((result) =>
-                        setImage(
-                            first,
-                            base64Decode(Regula.FaceCaptureResponse.fromJson(
-                                    json.decode(result))!
-                                .image!
-                                .bitmap!
-                                .replaceAll("\n", "")),
-                            Regula.ImageType.LIVE));
-                    // setImage(first, null, Regula.ImageType.LIVE));
-                    Navigator.pop(context);
-                  })
-            ]));
+  // showAlertDialog(BuildContext context, bool first) => showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) => first
+  //         ? AlertDialog(title: const Text("Select option"), actions: [
+  //             TextButton(child: const Text("Use camera"), onPressed: () {})
+  //           ])
+  //         : AlertDialog(title: const Text("Select option"), actions: [
+  //             TextButton(
+  //                 child: const Text("Use camera"),
+  //                 onPressed: () {
+  //                   Regula.FaceSDK.presentFaceCaptureActivity().then((result) =>
+  //                       setImage(
+  //                           first,
+  //                           base64Decode(Regula.FaceCaptureResponse.fromJson(
+  //                                   json.decode(result))!
+  //                               .image!
+  //                               .bitmap!
+  //                               .replaceAll("\n", "")),
+  //                           Regula.ImageType.LIVE));
+  //                   // setImage(first, null, Regula.ImageType.LIVE));
+  //                   Navigator.pop(context);
+  //                 })
+  //           ]));
 
   showCircleFace(first) async {
     await Regula.FaceSDK.presentFaceCaptureActivity().then((result) => setImage(
@@ -202,7 +202,7 @@ class _MyAppState extends State<MyApp> {
 
   Widget createImage(first, image, VoidCallback onPress) => Material(
       child: Visibility(
-          visible: first ? true : true,
+          visible: true,
           child: InkWell(
             onTap: onPress,
             child: ClipRRect(
